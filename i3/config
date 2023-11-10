@@ -1,0 +1,104 @@
+# i3 config file (v4)
+
+set $mod Mod4
+font pango:monospace 8
+
+#appfinder shortcut
+bindsym $mod+space exec xfce4-appfinder
+
+for_window [class="Xfce4-appfinder"] floating enable, resize set 400px 150px
+
+# Font for window titles.
+font pango:monospace 8
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# start a terminal
+bindsym $mod+Return exec xfce4-terminal
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# changhe focus
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen
+
+# enter tabbed mode
+bindsym $mod+w layout tabbed
+bindsym $mod+s layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# switch to workspace
+bindsym $mod+KP_End workspace 1
+bindsym $mod+KP_Down workspace 2
+bindsym $mod+KP_Next workspace 3
+bindsym $mod+KP_Left workspace 4
+bindsym $mod+KP_Delete workspace 5
+bindsym $mod+KP_Right workspace 6
+bindsym $mod+KP_Home workspace 7
+bindsym $mod+KP_Up workspace 8
+bindsym $mod+KP_Prior workspace 9
+bindsym $mod+KP_Insert workspace 10
+
+# move focused container to workspace
+bindsym $mod+Shift+KP_End move container to workspace 1
+bindsym $mod+Shift+KP_Down move container to workspace 2
+bindsym $mod+Shift+KP_Next move container to workspace 3
+bindsym $mod+Shift+KP_Left move container to workspace 4
+bindsym $mod+Shift+KP_Delete move container to workspace 5
+bindsym $mod+Shift+KP_Right move container to workspace 6
+bindsym $mod+Shift+KP_Home move container to workspace 7
+bindsym $mod+Shift+KP_Up move container to workspace 8
+bindsym $mod+Shift+KP_Prior move container to workspace 9
+bindsym $mod+Shift+KP_Insert move container to workspace 10
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# class                 border  backgr. text    indicator child_border
+client.focused          #4c566a #4c566a #a3be8c #b48ead   #b48ead
+client.focused_inactive #2e3440 #2e3440 #ffffff #000000   #000000
+client.unfocused        #2e3440 #2e3440 #cccccc #000000   #000000
+client.urgent           #2e3440 #2e3440 #000000 #900000   #900000
+client.placeholder      #2e3440 #0c0c0c #ffffff #000000   #0c0c0c
+client.background       #2e3440 
+
+#gaps
+gaps inner 10
+
+
+#remove borders
+for_window [class=".*"] border pixel 1
+default_border pixel 0
+default_floating_border pixel 0
+
+# starup apps/comands
+exec --no-startup-id xrandr --output VGA-1 --mode 1280x1024 --rate 75
+exec --no-startup-id xset s off
+exec --no-startup-id xset -dpms
+exec --no-startup-id numlockx off
+#exec --no-startup-id picom
+#exec --no-startup-id xfce4-panel
+exec --no-startup-id polybar bar2 -r
+exec --no-startup-id xset led 3
+exec --no-startup-id nitrogen --restore
+exec --no-startup-id flameshot
+#exec --no-startup-id xfce4-power-manager
